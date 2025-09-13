@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pragati's Portfolio</title> <!-- Title updated for clarity -->
+
+    <!-- Font Awesome for Icons (GitHub, Live Demo, Download Resume) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS for Project Cards Hover Effect -->
+    <style>
+      .project-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
+      }
+      .project-card:hover {
+        transform: translateY(-10px); /* Card thoda upar uthega */
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important; /* Bada shadow dikhega */
+      }
+
+      /* Custom CSS for Timeline effect in Resume/Experience section */
+      .timeline {
+        position: relative;
+        padding: 0;
+        list-style: none;
+      }
+      .timeline:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 2px;
+        margin-left: -1px;
+        background-color: #e0e0e0;
+      }
+      .timeline-item {
+        margin-bottom: 20px;
+        position: relative;
+        text-align: center;
+      }
+      .timeline-item:before,
+      .timeline-item:after {
+        content: " ";
+        display: table;
+      }
+      .timeline-item:after {
+        clear: both;
+      }
+      .timeline-badge {
+        color: #fff;
+        width: 20px;
+        height: 20px;
+        line-height: 50px;
+        font-size: 1.4em;
+        text-align: center;
+        position: absolute;
+        top: 15px;
+        left: 50%;
+        margin-left: -10px;
+        background-color: #999999;
+        z-index: 100;
+        border-top-right-radius: 50%;
+        border-top-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+      }
+      .timeline-panel {
+        width: 45%;
+        float: left;
+        border-radius: 8px;
+        padding: 20px;
+        position: relative;
+      }
+      .timeline-panel.timeline-panel-right {
+        float: right;
+      }
+
+      /* Media queries for responsiveness */
+      @media (max-width: 767px) {
+        .timeline:before {
+          left: 18px;
+        }
+        .timeline-item {
+          text-align: start; /* Align text to start on small screens */
+        }
+        .timeline-badge {
+          left: 18px;
+          margin-left: -10px;
+          top: 20px; /* Adjust badge position */
+        }
+        .timeline-panel {
+          width: calc(100% - 70px); /* Adjust width for small screens */
+          float: right;
+        }
+        .timeline-panel.timeline-panel-right {
+          float: right; /* Ensure right float on small screens too */
+        }
+        .timeline-panel:before {
+          border-left-width: 0;
+          border-right-width: 15px;
+          left: -15px;
+          right: auto;
+        }
+        .timeline-panel:after {
+          border-left-width: 0;
+          border-right-width: 14px;
+          left: -14px;
+          right: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
