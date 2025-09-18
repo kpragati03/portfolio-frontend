@@ -69,8 +69,7 @@ const Contact = () => {
   setIsLoading(true);
 
   try {
-    const response = await fetch("/api/contact", {
-      method: "POST",
+const response = await fetch("https://portfolio-backend-enrm.onrender.com/api/contact", {      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name,
