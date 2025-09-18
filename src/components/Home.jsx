@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import './home.css';
+import './Home.css';
 
 const Home = () => {
   const profileImage = "https://placehold.co/300x300/007bff/ffffff?text=Pragati";
