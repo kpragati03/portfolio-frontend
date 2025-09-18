@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
-import './projects.css';
+import './Projects.css';
 
 const Projects = () => {
   const location = useLocation();
