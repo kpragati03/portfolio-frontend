@@ -64,36 +64,40 @@ const Contact = () => {
   }, []);
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setStatus('');
-  setIsLoading(true);
+    e.preventDefault();
+    setStatus('');
+    setIsLoading(true);
 
-  try {
-const response = await fetch("https://portfolio-backend-enrm.onrender.com/api/contact", {      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-        email,
-        message,
-        phone: "",    // You can add phone and subject fields if you have them
-        subject: ""
-      }),
-    });
+    try {
+      // <-- CHANGE HERE: Use the environment variable
+      const apiUrl = `${import.meta.env.VITE_API_URL}/api/contact`;
+      
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          phone: "",    // You can add phone and subject fields if you have them
+          subject: ""
+        }),
+      });
 
-    if (response.ok) {
-      setStatus('success');
-      setName('');
-      setEmail('');
-      setMessage('');
-    } else {
+      if (response.ok) {
+        setStatus('success');
+        setName('');
+        setEmail('');
+        setMessage('');
+      } else {
+        setStatus('error');
+      }
+    } catch (err) {
       setStatus('error');
+    } finally {
+      setIsLoading(false);
     }
-  } catch (err) {
-    setStatus('error');
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
   const scrollToForm = () => {
     document.getElementById('contact-form')?.scrollIntoView({ 
