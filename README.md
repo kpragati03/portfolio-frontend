@@ -63,15 +63,15 @@ npm start
 
 ## Screenshots
 
-![img1](https://github.com/user-attachments/assets/4ce8644b-6640-4cbc-9006-b88c9f9efa24)
+![img1](https://github.com/user-attachments/assets/901a90a6-40f2-4d9b-a13e-ed88649bdc5e)
 The screenshot shows the homepage of a personal portfolio website for a "MERN Stack Developer" and self-introduction.
-![img2](https://github.com/user-attachments/assets/c5f899d2-eeac-4652-908c-376fdf38ee1f)
+![img2](https://github.com/user-attachments/assets/c1368204-6c0e-4aad-a731-ec1503f6b632)
 The screenshot shows the "About Me" page of a personal portfolio website.
-![img3](https://github.com/user-attachments/assets/924c4e41-7752-4e6d-8da3-999e54c0b8fe)
+![img3](https://github.com/user-attachments/assets/09e4a229-bb44-4028-b984-40b9beae3a07)
 This screenshot demonstrates the Frontend Projects Page of your portfolio website, where different projects are showcased with their status.
-![img4](https://github.com/user-attachments/assets/7c54f810-e817-4df8-b38b-49249ebf6841)
+![img4](https://github.com/user-attachments/assets/2cdb63f9-86fa-40a4-902a-383174a40358)
 The screenshot shows the "Resume & Experience" page of a personal portfolio website being viewed in a web browser.
-![img5](https://github.com/user-attachments/assets/6e2711dc-93e3-4234-bb33-1cd7c7e74497)
+![img5](https://github.com/user-attachments/assets/be8b4f33-9a6d-4ecb-bc2b-41468ccd833f)
 The screenshot shows a "Contact" page with a form to send a message.
 ---
 
