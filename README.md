@@ -144,36 +144,39 @@ A visitor fills out the contact form on your portfolio website:
 ---
 
 **#Team Contributions**
+
 This project was a collaborative effort where each team member took ownership of key areas of the development lifecycle, from conception to deployment. The main responsibilities were distributed as follows:
 
-Pragati Kumari (Project Lead & Lead Full-Stack Developer)
+**##Pragati Kumari (Project Lead & Lead Full-Stack Developer)**
+
 As the project lead, Pragati spearheaded the technical direction and was responsible for the entire frontend development and the successful deployment of the full-stack application.
 
-Project Leadership & Architecture: Led the project initiation, defined the technical architecture, and selected the MERN stack technologies.
+**Project Leadership & Architecture:** Led the project initiation, defined the technical architecture, and selected the MERN stack technologies.
 
-Lead Frontend Development: Single-handedly designed and developed the entire frontend application using React. This included creating all components, implementing the UI/UX, styling, and adding light/dark mode theme functionalities.
+**Lead Frontend Development:** Single-handedly designed and developed the entire frontend application using React. This included creating all components, implementing the UI/UX, styling, and adding light/dark mode theme functionalities.
 
-Full-Stack Deployment & DevOps: Managed the complete end-to-end deployment pipeline, deploying the frontend to Vercel and the backend to Render.
+**Full-Stack Deployment & DevOps:** Managed the complete end-to-end deployment pipeline, deploying the frontend to Vercel and the backend to Render.
 
-Critical Bug Resolution: Systematically troubleshooted and resolved complex integration issues, including Cross-Origin Resource Sharing (CORS) policies, case-sensitivity bugs, and server-side deployment errors.
+**Critical Bug Resolution:** Systematically troubleshooted and resolved complex integration issues, including Cross-Origin Resource Sharing (CORS) policies, case-sensitivity bugs, and server-side deployment errors.
 
-Version Control & Documentation: Established the final GitHub repositories and authored the comprehensive technical documentation, including setup guides, deployment links, and documenting project challenges.
+**Version Control & Documentation:** Established the final GitHub repositories and authored the comprehensive technical documentation, including setup guides, deployment links, and documenting project challenges.
 
-Saroj Padhi (Lead Backend Developer)
+**##Saroj Padhi (Lead Backend Developer)**
+
 Saroj was responsible for building the entire server-side of the application, ensuring a robust and scalable backend to support the frontend's features.
 
-Backend Architecture: Architected and implemented the entire server-side application using Node.js and Express.js.
+**Backend Architecture:**  Architected and implemented the entire server-side application using Node.js and Express.js.
 
-Database Management: Designed the MongoDB schema for the contact form and managed the complete database integration and connectivity.
+**Database Management:** Designed the MongoDB schema for the contact form and managed the complete database integration and connectivity.
 
-API Development: Developed, tested, and secured all the API endpoints required for the frontend to interact with the database.
+**API Development:** Developed, tested, and secured all the API endpoints required for the frontend to interact with the database.
 
-Dommaraju Jyothshna Sree (Project Contributor)
+**##Dommaraju Jyothshna Sree (Project Contributor)**
 Jyothshna played a key role in the initial phase of the project, helping to set up the foundational elements.
 
-Initial Setup & Scaffolding: Contributed to the project's kickoff by creating the initial GitHub repository.
+**Initial Setup & Scaffolding:** Contributed to the project's kickoff by creating the initial GitHub repository.
 
-Documentation: Authored the first draft of the project's README file, which laid the groundwork for the final documentation.
+**Documentation:** Authored the first draft of the project's README file, which laid the groundwork for the final documentation.
 
 
 
