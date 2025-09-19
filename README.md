@@ -22,44 +22,56 @@ The Portfolio Frontend is a React-based web application that provides an elegant
 ---
 
 ## Links
-- *GitHub Repository:* https://github.com/jyothshna16/portfolio_frontend.git
-- *Live Demo:*
+-** GitHub Repository:** https://github.com/kpragati03/portfolio_frontend.git
 
+**Live Demo:** https://portfolio-frontend-one-opal.vercel.app
 ---
 
-## Technologies Used
-- *HTML5*
-- *CSS3*
-- *JavaScript (ES6)*
-- *React.js*
-- *Tailwind CSS / Bootstrap*
+**Technologies Used**
+HTML5 & CSS3
 
----
+JavaScript (ES6+)
 
-## How to Run Locally
-- *Clone the repository*
-bash
-git clone  https://github.com/jyothshna16/portfolio_frontend.git
+React.js (Vite)
 
-- *Navigate into the project folder*
-bash
-cd protfolio_frontend
+React Bootstrap
 
-- *Install dependencies*
-bash
+**How to Run Locally**
+Clone the repository
+
+Bash
+
+git clone https://github.com/kpragati03/portfolio_frontend.git
+Navigate into the project folder
+
+Bash
+
+cd portfolio-frontend
+Install dependencies
+
+Bash
+
 npm install
+Start the development server
 
-- *Start the development server*
-bash
-npm start
+Bash
+
+npm run dev
 
 
-## Challenges Faced & Solutions
-- *Challenge:* Project Setup & Dependencies
-  *Solution:* Carefully installed required packages (react, react-dom, vite, etc.) and verified package.json to ensure all dependencies were correctly listed.
+**Challenges Faced & Solutions**
+**Challenge:** Cross-Origin Resource Sharing (CORS) Errors
 
-- *challenge:* API Integration with Backend
-   *Solution:* Fixed API endpoint URLs and handled CORS issues by updating the backend configuration. Used fetch/axios properly for POST requests.
+**Solution: **Configured the backend Node.js server with a flexible CORS policy to accept requests from both the main Vercel production domain and dynamic preview URLs generated during development.
+
+**Challenge:** Deployment Bugs on Render
+
+**Solution:** Debugged several Module Not Found errors caused by case-sensitivity differences between the local Windows environment and the Linux-based deployment server. Corrected all file import paths to ensure they matched the exact casing of the filenames.
+
+**Challenge:** Corrupted Local Git Repository
+
+**Solution:** Resolved a fatal: in unpopulated submodule error by identifying and removing a nested, accidental Git repository within the project structure, which allowed for a clean commit and push history.
+
 
 ## Screenshots
 
@@ -130,10 +142,44 @@ A visitor fills out the contact form on your portfolio website:
 
 ---
 
+**###Team Contributions**
+This project was a collaborative effort where each team member took ownership of key areas of the development lifecycle, from conception to deployment. The main responsibilities were distributed as follows:
+
+**Pragati Kumari (Project Lead & Lead Full-Stack Developer)**
+As the project lead, Pragati spearheaded the technical direction and was responsible for the entire frontend development and the successful deployment of the full-stack application.
+
+Project Leadership & Architecture: Led the project initiation, defined the technical architecture, and selected the MERN stack technologies.
+
+Lead Frontend Development: Single-handedly designed and developed the entire frontend application using React. This included creating all components, implementing the UI/UX, styling, and adding light/dark mode theme functionalities.
+
+Full-Stack Deployment & DevOps: Managed the complete end-to-end deployment pipeline, deploying the frontend to Vercel and the backend to Render.
+
+Critical Bug Resolution: Systematically troubleshooted and resolved complex integration issues, including Cross-Origin Resource Sharing (CORS) policies, case-sensitivity bugs, and server-side deployment errors.
+
+Version Control & Documentation: Established the final GitHub repositories and authored the comprehensive technical documentation, including setup guides, deployment links, and documenting project challenges.
+
+**Saroj Padhi (Lead Backend Developer)**
+Saroj was responsible for building the entire server-side of the application, ensuring a robust and scalable backend to support the frontend's features.
+
+Backend Architecture: Architected and implemented the entire server-side application using Node.js and Express.js.
+
+Database Management: Designed the MongoDB schema for the contact form and managed the complete database integration and connectivity.
+
+API Development: Developed, tested, and secured all the API endpoints required for the frontend to interact with the database.
+
+**Dommaraju Jyothshna Sree (Project Contributor)**
+Jyothshna played a key role in the initial phase of the project, helping to set up the foundational elements.
+
+Initial Setup & Scaffolding: Contributed to the project's kickoff by creating the initial GitHub repository.
+
+Documentation: Authored the first draft of the project's README file, which laid the groundwork for the final documentation.
+
+
+
 ## Author
 
-*Name:* DOMMARAJU JYOTHSHNA SREE ,
-          PRAGATI KUMARI,
-          SAROJ PADHI.
+*Name:*   PRAGATI KUMARI,
+          SAROJ PADHI,
+          DOMMARAJU JYOTHSHNA SREE.
 
 *Date:* september 2025
