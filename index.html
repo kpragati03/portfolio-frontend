@@ -4,116 +4,277 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pragati's Portfolio</title> <!-- Title updated for clarity -->
-
-    <!-- Font Awesome for Icons (GitHub, Live Demo, Download Resume) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Custom CSS for Project Cards Hover Effect -->
+    <title>Pragati Kumari — MERN Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
     <style>
-      .project-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover */
-      }
-      .project-card:hover {
-        transform: translateY(-10px); /* Card thoda upar uthega */
-        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important; /* Bada shadow dikhega */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      /* ── LIGHT THEME ── */
+      :root {
+        --bg:       #fdf2f8;
+        --bg2:      #fce7f3;
+        --bg3:      #fbcfe8;
+        --surface:  rgba(255,255,255,0.85);
+        --surface2: rgba(255,255,255,0.6);
+        --border:   rgba(219,39,119,0.18);
+        --border2:  rgba(219,39,119,0.32);
+
+        --text:     #1e0a18;   /* near-black with pink tint — very readable */
+        --text2:    #6d1f4a;   /* deep rose — strong secondary */
+        --text3:    #9d3a6a;   /* medium rose — still clearly visible */
+
+        --pink:     #db2777;   /* deeper pink for better contrast */
+        --rose:     #e11d48;
+        --lavender: #7c3aed;
+        --blush:    #f472b6;
+        --mauve:    #9333ea;
+
+        --grad1: linear-gradient(135deg, #db2777, #7c3aed);
+        --grad2: linear-gradient(135deg, #e11d48, #db2777, #9333ea);
+        --grad3: linear-gradient(135deg, #fbcfe8, #e9d5ff);
+        --shadow:  0 4px 24px rgba(219,39,119,0.14);
+        --shadow2: 0 16px 48px rgba(219,39,119,0.22);
+        --glow:    0 0 32px rgba(219,39,119,0.28);
       }
 
-      /* Custom CSS for Timeline effect in Resume/Experience section */
-      .timeline {
-        position: relative;
-        padding: 0;
-        list-style: none;
-      }
-      .timeline:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 50%;
-        width: 2px;
-        margin-left: -1px;
-        background-color: #e0e0e0;
-      }
-      .timeline-item {
-        margin-bottom: 20px;
-        position: relative;
-        text-align: center;
-      }
-      .timeline-item:before,
-      .timeline-item:after {
-        content: " ";
-        display: table;
-      }
-      .timeline-item:after {
-        clear: both;
-      }
-      .timeline-badge {
-        color: #fff;
-        width: 20px;
-        height: 20px;
-        line-height: 50px;
-        font-size: 1.4em;
-        text-align: center;
-        position: absolute;
-        top: 15px;
-        left: 50%;
-        margin-left: -10px;
-        background-color: #999999;
-        z-index: 100;
-        border-top-right-radius: 50%;
-        border-top-left-radius: 50%;
-        border-bottom-right-radius: 50%;
-        border-bottom-left-radius: 50%;
-      }
-      .timeline-panel {
-        width: 45%;
-        float: left;
-        border-radius: 8px;
-        padding: 20px;
-        position: relative;
-      }
-      .timeline-panel.timeline-panel-right {
-        float: right;
+      /* ── DARK THEME ── */
+      [data-theme="dark"] {
+        --bg:       #0d0410;
+        --bg2:      #130618;
+        --bg3:      #1e0a26;
+        --surface:  rgba(255,255,255,0.07);
+        --surface2: rgba(255,255,255,0.04);
+        --border:   rgba(244,114,182,0.22);
+        --border2:  rgba(244,114,182,0.38);
+
+        --text:     #fdf4ff;   /* near-white with pink tint */
+        --text2:    #f9a8d4;   /* bright pink — very readable on dark */
+        --text3:    #e879f9;   /* vivid magenta — clearly visible */
+
+        --pink:     #f472b6;
+        --rose:     #fb7185;
+        --lavender: #c4b5fd;
+        --blush:    #fda4af;
+        --mauve:    #e879f9;
+
+        --grad1: linear-gradient(135deg, #f472b6, #c4b5fd);
+        --grad2: linear-gradient(135deg, #fb7185, #f472b6, #e879f9);
+        --grad3: linear-gradient(135deg, #4a044e, #1e1b4b);
+        --shadow:  0 4px 24px rgba(244,114,182,0.18);
+        --shadow2: 0 16px 48px rgba(244,114,182,0.28);
+        --glow:    0 0 40px rgba(244,114,182,0.35);
       }
 
-      /* Media queries for responsiveness */
-      @media (max-width: 767px) {
-        .timeline:before {
-          left: 18px;
-        }
-        .timeline-item {
-          text-align: start; /* Align text to start on small screens */
-        }
-        .timeline-badge {
-          left: 18px;
-          margin-left: -10px;
-          top: 20px; /* Adjust badge position */
-        }
-        .timeline-panel {
-          width: calc(100% - 70px); /* Adjust width for small screens */
-          float: right;
-        }
-        .timeline-panel.timeline-panel-right {
-          float: right; /* Ensure right float on small screens too */
-        }
-        .timeline-panel:before {
-          border-left-width: 0;
-          border-right-width: 15px;
-          left: -15px;
-          right: auto;
-        }
-        .timeline-panel:after {
-          border-left-width: 0;
-          border-right-width: 14px;
-          left: -14px;
-          right: auto;
-        }
+      html { font-size: 17px; }   /* bump base size */
+
+      body {
+        font-family: 'DM Sans', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        overflow-x: hidden;
+        transition: background 0.4s ease, color 0.4s ease;
+        line-height: 1.6;
+        cursor: none;            /* hide default — custom cursor below */
+      }
+
+      /* ── CUSTOM CURSOR ── */
+      #cursor-dot {
+        position: fixed; top: 0; left: 0; z-index: 99999; pointer-events: none;
+        width: 10px; height: 10px; border-radius: 50%;
+        background: var(--pink);
+        transform: translate(-50%,-50%);
+        transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
+        box-shadow: var(--glow);
+      }
+      #cursor-ring {
+        position: fixed; top: 0; left: 0; z-index: 99998; pointer-events: none;
+        width: 36px; height: 36px; border-radius: 50%;
+        border: 1.5px solid var(--pink);
+        transform: translate(-50%,-50%);
+        transition: transform 0.18s ease, width 0.25s, height 0.25s, opacity 0.2s;
+        opacity: 0.6;
+      }
+      body:has(a:hover) #cursor-dot,
+      body:has(button:hover) #cursor-dot { width: 16px; height: 16px; }
+      body:has(a:hover) #cursor-ring,
+      body:has(button:hover) #cursor-ring { width: 52px; height: 52px; opacity: 0.4; }
+
+      /* ── SCROLL PROGRESS BAR ── */
+      #scroll-bar {
+        position: fixed; top: 0; left: 0; height: 3px; z-index: 9999;
+        background: var(--grad1);
+        box-shadow: var(--glow);
+        transition: width 0.1s linear;
+        pointer-events: none;
+      }
+
+      /* ── SCROLLBAR ── */
+      ::-webkit-scrollbar { width: 5px; }
+      ::-webkit-scrollbar-track { background: var(--bg); }
+      ::-webkit-scrollbar-thumb { background: var(--grad1); border-radius: 10px; }
+      ::selection { background: rgba(219,39,119,0.22); color: var(--text); }
+      input, textarea, button, a { cursor: none; }
+      input::placeholder, textarea::placeholder { color: var(--text3); opacity: 0.7; }
+
+      /* ── TYPOGRAPHY ── */
+      .serif { font-family: 'Playfair Display', serif; }
+
+      h1, h2, h3 { color: var(--text); }
+
+      /* ── SHIMMER ── */
+      .shimmer-text {
+        background: linear-gradient(90deg, var(--pink) 0%, var(--mauve) 40%, var(--rose) 70%, var(--pink) 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmer 3s linear infinite;
+      }
+      @keyframes shimmer {
+        0%   { background-position: 0% center; }
+        100% { background-position: 200% center; }
+      }
+
+      /* ── GLASS ── */
+      .glass {
+        background: var(--surface);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid var(--border);
+      }
+
+      /* ── CARD ── */
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        backdrop-filter: blur(20px);
+        transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
+      }
+      .card:hover {
+        box-shadow: var(--shadow2);
+        border-color: var(--border2);
+        transform: translateY(-5px);
+      }
+
+      /* ── BUTTONS ── */
+      .btn-primary {
+        background: var(--grad1); border: none; border-radius: 50px;
+        padding: 15px 36px; color: #fff; font-weight: 700; font-size: 1rem;
+        cursor: none; font-family: 'DM Sans', sans-serif;
+        box-shadow: var(--glow); transition: all 0.3s; letter-spacing: 0.3px;
+      }
+      .btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow2); }
+
+      .btn-outline {
+        background: transparent; border: 2px solid var(--border2);
+        border-radius: 50px; padding: 13px 36px; color: var(--pink);
+        font-weight: 700; font-size: 1rem; cursor: none;
+        font-family: 'DM Sans', sans-serif; transition: all 0.3s;
+      }
+      .btn-outline:hover { background: var(--surface); transform: translateY(-3px); border-color: var(--pink); }
+
+      /* ── SECTION TAG ── */
+      .section-tag {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: var(--surface); border: 1.5px solid var(--border2);
+        border-radius: 50px; padding: 7px 20px;
+        font-size: 0.88rem; font-weight: 600; color: var(--pink);
+        backdrop-filter: blur(10px); letter-spacing: 0.3px;
+      }
+
+      /* ── ANIMATIONS ── */
+      @keyframes float {
+        0%,100% { transform: translateY(0) rotate(0deg); }
+        50%      { transform: translateY(-18px) rotate(4deg); }
+      }
+      @keyframes floatR {
+        0%,100% { transform: translateY(0) rotate(0deg); }
+        50%      { transform: translateY(18px) rotate(-4deg); }
+      }
+      @keyframes pulse-ring {
+        0%   { transform: scale(1); opacity: 0.5; }
+        100% { transform: scale(1.6); opacity: 0; }
+      }
+
+      /* ── RESPONSIVE HELPERS ── */
+      @media (max-width: 768px) {
+        html { font-size: 15px; }
+        .hide-mobile { display: none !important; }
+        .grid-2  { grid-template-columns: 1fr !important; }
+        .grid-4  { grid-template-columns: repeat(2,1fr) !important; }
+        .grid-3  { grid-template-columns: 1fr !important; }
       }
     </style>
   </head>
   <body>
+    <!-- Custom cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+    <!-- Scroll progress -->
+    <div id="scroll-bar" style="width:0%"></div>
+
     <div id="root"></div>
+
     <script type="module" src="/src/main.jsx"></script>
+
+    <script>
+      // Custom cursor
+      const dot  = document.getElementById('cursor-dot');
+      const ring = document.getElementById('cursor-ring');
+      let mx = 0, my = 0, rx = 0, ry = 0;
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+      (function loop() {
+        rx += (mx - rx) * 0.18;
+        ry += (my - ry) * 0.18;
+        dot.style.left  = mx + 'px';
+        dot.style.top   = my + 'px';
+        ring.style.left = rx + 'px';
+        ring.style.top  = ry + 'px';
+        requestAnimationFrame(loop);
+      })();
+
+      // Magnetic buttons
+      document.addEventListener('mousemove', e => {
+        document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
+          const rect = btn.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const dx = e.clientX - cx, dy = e.clientY - cy;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 90) {
+            const pull = (90 - dist) / 90;
+            btn.style.transform = `translate(${dx * pull * 0.38}px, ${dy * pull * 0.38}px)`;
+          } else {
+            btn.style.transform = '';
+          }
+        });
+      });
+
+      // Typing sound (subtle click on keydown in inputs)
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const playClick = () => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.connect(g); g.connect(ctx.destination);
+        o.frequency.value = 600 + Math.random() * 200;
+        o.type = 'sine';
+        g.gain.setValueAtTime(0.04, ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+        o.start(); o.stop(ctx.currentTime + 0.06);
+      };
+      document.addEventListener('keydown', e => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') playClick();
+      });
+
+      // Scroll progress bar
+      const bar = document.getElementById('scroll-bar');
+      window.addEventListener('scroll', () => {
+        const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+        bar.style.width = pct + '%';
+      });
+    </script>
   </body>
 </html>
