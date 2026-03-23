@@ -126,7 +126,7 @@ const Projects = () => {
 
       <div style={{ position: 'absolute', top: '20%', right: '-5%', width: 400, height: 400, borderRadius: '60% 40% 70% 30%/50% 60% 40% 50%', background: 'rgba(236,72,153,0.07)', filter: 'blur(60px)', pointerEvents: 'none' }} />
 
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 40px', position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 clamp(16px,5vw,40px)', position: 'relative', zIndex: 1 }}>
 
         {/* Header */}
         <motion.div ref={ref} initial={{ opacity: 0, y: -20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -149,7 +149,7 @@ const Projects = () => {
         </AnimatePresence>
 
         {/* Stats */}
-        <div className="grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16 }}>
+        <div className="grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(130px,1fr))', gap: 16 }}>
           {[
             { value: '3+', label: 'Projects Completed', icon: '🌸' },
             { value: '5+', label: 'Technologies Used', icon: '⚡' },

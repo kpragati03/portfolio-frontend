@@ -157,7 +157,7 @@ const ResumeExperience = () => {
 
       <div style={{ position: 'absolute', top: '15%', right: '-5%', width: 380, height: 380, borderRadius: '60% 40% 70% 30%/50% 60% 40% 50%', background: 'rgba(167,139,250,0.08)', filter: 'blur(60px)', pointerEvents: 'none' }} />
 
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 40px', position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 clamp(16px,5vw,40px)', position: 'relative', zIndex: 1 }}>
 
         {/* Header */}
         <motion.div ref={headerRef} initial={{ opacity: 0, y: -20 }} animate={headerInView ? { opacity: 1, y: 0 } : {}}
@@ -175,7 +175,7 @@ const ResumeExperience = () => {
         </motion.div>
 
         {/* Stats */}
-        <div ref={statsRef} className="grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 14, marginBottom: 48 }}>
+        <div ref={statsRef} className="grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(120px,1fr))', gap: 14, marginBottom: 48 }}>
           {[
             { value: 5, suffix: '+', label: 'Projects', icon: '🚀' },
             { value: 12, suffix: '+', label: 'Technologies', icon: '⚡' },

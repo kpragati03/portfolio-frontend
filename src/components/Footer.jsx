@@ -55,7 +55,7 @@ const Footer = () => {
         </motion.div>
       </div>
 
-      <footer style={{ background: 'var(--bg2)', borderTop: '1px solid var(--border)', padding: '56px 40px 28px' }}>
+      <footer style={{ background: 'var(--bg2)', borderTop: '1px solid var(--border)', padding: 'clamp(32px,5vw,56px) clamp(16px,5vw,40px) 28px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: 40, marginBottom: 48 }}>
 

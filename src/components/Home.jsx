@@ -114,7 +114,7 @@ const Home = ({ theme }) => {
         ))}
 
         {/* Main grid */}
-        <div style={{ maxWidth: 1240, margin: '0 auto', padding: '80px 48px 120px', width: '100%', display: 'grid', gridTemplateColumns: '1fr auto', gap: 64, alignItems: 'center', position: 'relative', zIndex: 1 }}>
+        <div style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(60px,8vw,80px) clamp(20px,5vw,48px) 120px', width: '100%', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 480px), 1fr))', gap: 'clamp(32px,5vw,64px)', alignItems: 'center', position: 'relative', zIndex: 1 }}>
 
           {/* ── LEFT ── */}
           <motion.div initial={{ opacity: 0, x: -60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, ease: 'easeOut', delay: showIntro ? 1.6 : 0 }}>
@@ -130,16 +130,16 @@ const Home = ({ theme }) => {
             {/* Heading */}
             <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: showIntro ? 1.9 : 0.25 }}
               className="serif"
-              style={{ fontSize: 'clamp(3.2rem,7vw,6rem)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '-2px', marginBottom: 18, color: 'var(--text)', whiteSpace: 'nowrap' }}>
+              style={{ fontSize: 'clamp(2.4rem,7vw,6rem)', fontWeight: 900, lineHeight: 1.1, letterSpacing: '-2px', marginBottom: 18, color: 'var(--text)' }}>
               Hi, I'm{' '}
               <span className="shimmer-text">Pragati</span>
               <motion.span animate={{ rotate: [0, 22, 0], scale: [1, 1.2, 1] }} transition={{ duration: 2, repeat: Infinity }}
-                style={{ display: 'inline-block', marginLeft: 10, whiteSpace: 'nowrap' }}>🌷</motion.span>
+                style={{ display: 'inline-block', marginLeft: 6, whiteSpace: 'normal' }}>🌷</motion.span>
             </motion.h1>
 
             {/* Typewriter */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: showIntro ? 2.0 : 0.4 }}
-              style={{ fontSize: 'clamp(1.15rem,2.2vw,1.5rem)', color: 'var(--text2)', marginBottom: 22, minHeight: 40, display: 'flex', alignItems: 'center', gap: 10, fontWeight: 500 }}>
+              style={{ fontSize: 'clamp(1rem,2.2vw,1.5rem)', color: 'var(--text2)', marginBottom: 22, minHeight: 40, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, fontWeight: 500 }}>
               <span style={{ color: 'var(--pink)', fontWeight: 700 }}>✨ A passionate</span>
               <TypeAnimation
                 sequence={['MERN Stack Developer', 2000, 'Full Stack Developer', 2000, 'Digital Marketer', 2000, 'Java Developer', 2000, 'UI/UX Designer', 2000, 'Technical Delivery Manager', 2000, 'Project Manager', 2000, 'Frontend Specialist', 2000]}
@@ -255,9 +255,9 @@ const Home = ({ theme }) => {
 
         {/* Stats bar */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: showIntro ? 2.5 : 0.9 }}
-          style={{ position: 'absolute', bottom: 0, left: 0, right: 0, borderTop: '1px solid var(--border)', background: 'var(--surface)', backdropFilter: 'blur(20px)', display: 'flex', justifyContent: 'center' }}>
+          style={{ borderTop: '1px solid var(--border)', background: 'var(--surface)', backdropFilter: 'blur(20px)', display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
           {stats.map((s, i) => (
-            <div key={i} style={{ flex: '1 1 0', maxWidth: 220, textAlign: 'center', padding: '20px 16px', borderRight: i < stats.length - 1 ? '1px solid var(--border)' : 'none' }}>
+            <div key={i} style={{ flex: '1 1 120px', textAlign: 'center', padding: '20px 16px', borderRight: i < stats.length - 1 ? '1px solid var(--border)' : 'none' }}>
               <div style={{ fontSize: '1.3rem', marginBottom: 4 }}>{s.icon}</div>
               <div className="serif shimmer-text" style={{ fontSize: '2rem', fontWeight: 700, lineHeight: 1 }}>{s.value}</div>
               <div style={{ color: 'var(--text3)', fontSize: '0.8rem', marginTop: 4, fontWeight: 600 }}>{s.label}</div>

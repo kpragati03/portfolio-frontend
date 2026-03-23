@@ -79,7 +79,7 @@ const About = () => {
       <div style={{ position: 'absolute', top: '5%', right: '-5%', width: 400, height: 400, borderRadius: '60% 40% 70% 30%/50% 60% 40% 50%', background: 'rgba(167,139,250,0.08)', filter: 'blur(60px)', pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', bottom: '10%', left: '-5%', width: 350, height: 350, borderRadius: '40% 60% 30% 70%/60% 40% 60% 40%', background: 'rgba(236,72,153,0.07)', filter: 'blur(60px)', pointerEvents: 'none' }} />
 
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 40px', position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 clamp(16px,5vw,40px)', position: 'relative', zIndex: 1 }}>
 
         {/* Header */}
         <FadeIn>
@@ -97,7 +97,7 @@ const About = () => {
 
         {/* Stats */}
         <FadeIn delay={0.1}>
-          <div ref={statsRef} className="grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16, marginBottom: 60 }}>
+          <div ref={statsRef} className="grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(140px,1fr))', gap: 16, marginBottom: 60 }}>
             {[
               { value: 5, suffix: '+', label: 'Projects Built', icon: '🚀' },
               { value: 12, suffix: '+', label: 'Technologies', icon: '⚡' },
@@ -117,7 +117,7 @@ const About = () => {
         </FadeIn>
 
         {/* Skills + Info */}
-        <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28, marginBottom: 48 }}>
+        <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,340px),1fr))', gap: 28, marginBottom: 48 }}>
 
           <FadeIn delay={0.15} x={-20} y={0}>
             <div className="card" style={{ padding: 32 }}>

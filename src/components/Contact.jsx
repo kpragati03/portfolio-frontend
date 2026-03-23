@@ -59,7 +59,7 @@ const Contact = () => {
       <div style={{ position: 'absolute', top: '10%', right: '-5%', width: 420, height: 420, borderRadius: '60% 40% 70% 30%/50% 60% 40% 50%', background: 'rgba(219,39,119,0.09)', filter: 'blur(70px)', pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', bottom: '10%', left: '-5%', width: 360, height: 360, borderRadius: '40% 60% 30% 70%/60% 40% 60% 40%', background: 'rgba(124,58,237,0.08)', filter: 'blur(70px)', pointerEvents: 'none' }} />
 
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 40px', position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 clamp(16px,5vw,40px)', position: 'relative', zIndex: 1 }}>
 
         {/* Header */}
         <motion.div ref={headerRef} initial={{ opacity: 0, y: -20 }} animate={headerInView ? { opacity: 1, y: 0 } : {}}
@@ -75,7 +75,7 @@ const Contact = () => {
 
         {/* Info cards */}
         <motion.div initial={{ opacity: 0, y: 24 }} animate={headerInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.2 }}
-          className="grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 16, marginBottom: 56 }}>
+          className="grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(140px,1fr))', gap: 16, marginBottom: 56 }}>
           {contactInfo.map((info, i) => (
             <motion.a key={i} href={info.link} target="_blank" rel="noopener noreferrer"
               whileHover={{ y: -7, boxShadow: 'var(--shadow2)' }} whileTap={{ scale: 0.97 }}
@@ -101,7 +101,7 @@ const Contact = () => {
             </div>
 
             <form onSubmit={handleSubmit}>
-              <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28, marginBottom: 28 }}>
+              <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,260px),1fr))', gap: 28, marginBottom: 28 }}>
                 <div>
                   <label style={{ display: 'block', color: 'var(--text2)', fontSize: '0.82rem', fontWeight: 700, marginBottom: 8, letterSpacing: '0.5px', textTransform: 'uppercase' }}>Your Name</label>
                   <input name="name" value={form.name} onChange={handleChange} required placeholder="Pragati Kumari"
