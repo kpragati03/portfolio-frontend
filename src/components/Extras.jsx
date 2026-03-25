@@ -2,20 +2,27 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 
 /* ── 1. CURSOR PETAL TRAIL ── */
-const PETALS = ['🌸', '✿', '✦', '✧', '❋', '🌷', '💮'];
 export const CursorTrail = () => {
   const [trails, setTrails] = useState([]);
   const counter = useRef(0);
 
   useEffect(() => {
+    const reduceMotion = document.documentElement.getAttribute('data-reduced-motion') === '1';
+    const coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    if (reduceMotion || coarse) return;
+
     let lastX = 0, lastY = 0;
     const onMove = e => {
       const dx = e.clientX - lastX, dy = e.clientY - lastY;
-      if (Math.abs(dx) + Math.abs(dy) < 12) return;
+      if (Math.abs(dx) + Math.abs(dy) < 10) return;
       lastX = e.clientX; lastY = e.clientY;
       const id = counter.current++;
-      setTrails(t => [...t.slice(-18), { id, x: e.clientX, y: e.clientY, char: PETALS[id % PETALS.length] }]);
-      setTimeout(() => setTrails(t => t.filter(p => p.id !== id)), 900);
+      const size = 10 + (id % 5) * 2;
+      setTrails(t => [
+        ...t.slice(-16),
+        { id, x: e.clientX, y: e.clientY, size, drift: (id % 2 === 0 ? 1 : -1) * (6 + (id % 6)) },
+      ]);
+      setTimeout(() => setTrails(t => t.filter(p => p.id !== id)), 720);
     };
     window.addEventListener('mousemove', onMove);
     return () => window.removeEventListener('mousemove', onMove);
@@ -25,14 +32,27 @@ export const CursorTrail = () => {
     <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 99990 }}>
       <AnimatePresence>
         {trails.map(p => (
-          <motion.span key={p.id}
-            initial={{ opacity: 1, scale: 1, x: p.x, y: p.y, rotate: 0 }}
-            animate={{ opacity: 0, scale: 0.3, y: p.y - 60, rotate: 180 }}
+          <motion.div
+            key={p.id}
+            initial={{ opacity: 0.9, scale: 1, x: p.x, y: p.y }}
+            animate={{ opacity: 0, scale: 0.35, x: p.x + p.drift, y: p.y - 46 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.85, ease: 'easeOut' }}
-            style={{ position: 'fixed', left: 0, top: 0, fontSize: '1rem', pointerEvents: 'none', transform: `translate(${p.x}px, ${p.y}px)`, lineHeight: 1 }}>
-            {p.char}
-          </motion.span>
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            style={{
+              position: 'fixed',
+              left: 0,
+              top: 0,
+              width: p.size,
+              height: p.size,
+              borderRadius: 999,
+              pointerEvents: 'none',
+              transform: `translate(${p.x}px, ${p.y}px)`,
+              background: 'radial-gradient(circle at 30% 30%, rgba(233,238,252,0.65), rgba(96,165,250,0.0) 60%)',
+              boxShadow: '0 0 18px rgba(96,165,250,0.22)',
+              border: '1px solid rgba(169,183,255,0.20)',
+              mixBlendMode: 'screen',
+            }}
+          />
         ))}
       </AnimatePresence>
     </div>

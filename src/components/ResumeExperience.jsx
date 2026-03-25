@@ -117,17 +117,17 @@ const TimelineCard = ({ item, index }) => {
       <div style={{ width: 4, background: `linear-gradient(180deg, ${item.colorHex}, ${item.colorHex}44)`, borderRadius: '4px 0 0 4px', flexShrink: 0 }} />
       <motion.div whileHover={{ x: 4, boxShadow: 'var(--shadow2)' }} transition={{ duration: 0.2 }}
         className="card" style={{ flex: 1, padding: '24px 28px', borderRadius: '0 20px 20px 0', borderLeft: 'none' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12, marginBottom: 12 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{ width: 44, height: 44, borderRadius: 14, background: `${item.colorHex}18`, border: `1.5px solid ${item.colorHex}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem', flexShrink: 0 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 10, marginBottom: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, flex: 1, minWidth: 0 }}>
+            <div style={{ width: 40, height: 40, borderRadius: 12, background: `${item.colorHex}18`, border: `1.5px solid ${item.colorHex}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', flexShrink: 0 }}>
               {item.icon}
             </div>
-            <div>
-              <h3 className="serif" style={{ color: 'var(--text)', fontWeight: 700, fontSize: '1.15rem', marginBottom: 3 }}>{item.title}</h3>
-              <div style={{ color: item.color, fontSize: '0.9rem', fontWeight: 600 }}>{item.org}</div>
+            <div style={{ minWidth: 0 }}>
+              <h3 className="serif" style={{ color: 'var(--text)', fontWeight: 700, fontSize: 'clamp(0.95rem,2vw,1.1rem)', marginBottom: 2, lineHeight: 1.3 }}>{item.title}</h3>
+              <div style={{ color: item.color, fontSize: '0.85rem', fontWeight: 600 }}>{item.org}</div>
             </div>
           </div>
-          <div style={{ textAlign: 'right' }}>
+          <div style={{ textAlign: 'right', flexShrink: 0 }}>
             <div style={{ color: 'var(--text3)', fontSize: '0.82rem', marginBottom: 6 }}>📅 {item.duration}</div>
             {item.grade && <div style={{ color: item.color, fontSize: '0.75rem', marginBottom: 6 }}>⭐ {item.grade}</div>}
             <span style={{ background: item.status === 'Current' || item.status === 'Pursuing' ? 'rgba(34,197,94,0.12)' : 'var(--bg3)', border: `1px solid ${item.status === 'Current' || item.status === 'Pursuing' ? 'rgba(34,197,94,0.4)' : 'var(--border2)'}`, borderRadius: 50, padding: '3px 12px', color: item.status === 'Current' || item.status === 'Pursuing' ? '#16a34a' : 'var(--pink)', fontSize: '0.7rem', fontWeight: 700 }}>
@@ -155,15 +155,15 @@ const ResumeExperience = () => {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', padding: '80px 0 60px', position: 'relative', overflow: 'hidden' }}>
 
-      <div style={{ position: 'absolute', top: '15%', right: '-5%', width: 380, height: 380, borderRadius: '60% 40% 70% 30%/50% 60% 40% 50%', background: 'rgba(167,139,250,0.08)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '15%', right: '-5%', width: 380, height: 380, borderRadius: '60% 40% 70% 30%/50% 60% 40% 50%', background: 'radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%)', filter: 'blur(40px)', pointerEvents: 'none' }} />
 
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 clamp(16px,5vw,40px)', position: 'relative', zIndex: 1 }}>
 
         {/* Header */}
         <motion.div ref={headerRef} initial={{ opacity: 0, y: -20 }} animate={headerInView ? { opacity: 1, y: 0 } : {}}
           style={{ textAlign: 'center', marginBottom: 48 }}>
-          <div className="section-tag" style={{ margin: '0 auto 20px' }}>📄 My Journey</div>
-          <h1 className="serif" style={{ fontSize: 'clamp(2.6rem,5.5vw,4.2rem)', fontWeight: 900, color: 'var(--text)', letterSpacing: '-2px', marginBottom: 24, lineHeight: 1.05 }}>
+          <div className="section-tag" style={{ margin: '0 auto 20px' }}>// my journey</div>
+          <h1 className="serif" style={{ fontSize: 'clamp(2rem,5vw,3.6rem)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-2px', marginBottom: 24, lineHeight: 1.05 }}>
             Resume & <span className="shimmer-text">Experience</span>
           </h1>
           <motion.a href="https://drive.google.com/file/d/1P6q5sZem7X81e4UwrsCFC6HCTXVCFzLY/view?usp=drive_link"

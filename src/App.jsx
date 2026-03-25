@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
 import About from './components/About';
@@ -8,32 +7,8 @@ import Projects from './components/Projects';
 import ResumeExperience from './components/ResumeExperience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import { CursorTrail, PageWipe, Confetti, MusicPlayer } from './components/Extras';
-
-const PageWrapper = ({ children }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 18 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -18 }}
-    transition={{ duration: 0.38, ease: 'easeOut' }}>
-    {children}
-  </motion.div>
-);
-
-const AnimatedRoutes = ({ theme }) => {
-  const location = useLocation();
-  return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageWrapper><Home theme={theme} /></PageWrapper>} />
-        <Route path="/about" element={<PageWrapper><About theme={theme} /></PageWrapper>} />
-        <Route path="/projects" element={<PageWrapper><Projects theme={theme} /></PageWrapper>} />
-        <Route path="/resume" element={<PageWrapper><ResumeExperience theme={theme} /></PageWrapper>} />
-        <Route path="/contact" element={<PageWrapper><Contact theme={theme} /></PageWrapper>} />
-      </Routes>
-    </AnimatePresence>
-  );
-};
+import { CursorTrail, Confetti, MusicPlayer } from './components/Extras';
+import CommandPalette from './components/CommandPalette';
 
 const EasterEgg = ({ children }) => {
   const [confetti, setConfetti] = useState(false);
@@ -58,40 +33,29 @@ const EasterEgg = ({ children }) => {
   );
 };
 
-const WipeController = () => {
-  const location = useLocation();
-  const [wiping, setWiping] = useState(false);
-  const prev = useRef(location.pathname);
-
-  useEffect(() => {
-    if (location.pathname !== prev.current) {
-      prev.current = location.pathname;
-      setWiping(true);
-      setTimeout(() => setWiping(false), 500);
-    }
-  }, [location]);
-
-  return <PageWipe isAnimating={wiping} />;
-};
-
 function AppInner() {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.style.background = theme === 'dark' ? '#000000' : '#ffffff';
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => setTheme(t => t === 'light' ? 'dark' : 'light');
+  const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark');
 
   return (
     <EasterEgg>
-      <WipeController />
       <CursorTrail />
       <MusicPlayer />
+      <CommandPalette />
       <Header toggleTheme={toggleTheme} currentTheme={theme} />
       <main>
-        <AnimatedRoutes theme={theme} />
+        <section id="home"><Home theme={theme} /></section>
+        <section id="about"><About theme={theme} /></section>
+        <section id="projects"><Projects theme={theme} /></section>
+        <section id="resume"><ResumeExperience theme={theme} /></section>
+        <section id="contact"><Contact theme={theme} /></section>
       </main>
       <Footer theme={theme} />
     </EasterEgg>

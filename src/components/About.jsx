@@ -75,17 +75,16 @@ const About = () => {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', position: 'relative', overflow: 'hidden', padding: '80px 0 60px' }}>
 
-      {/* Decorative blobs */}
-      <div style={{ position: 'absolute', top: '5%', right: '-5%', width: 400, height: 400, borderRadius: '60% 40% 70% 30%/50% 60% 40% 50%', background: 'rgba(167,139,250,0.08)', filter: 'blur(60px)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: '10%', left: '-5%', width: 350, height: 350, borderRadius: '40% 60% 30% 70%/60% 40% 60% 40%', background: 'rgba(236,72,153,0.07)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '5%', right: '-5%', width: 400, height: 400, borderRadius: '60% 40% 70% 30%/50% 60% 40% 50%', background: 'radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%)', filter: 'blur(40px)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: '10%', left: '-5%', width: 350, height: 350, borderRadius: '40% 60% 30% 70%/60% 40% 60% 40%', background: 'radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%)', filter: 'blur(40px)', pointerEvents: 'none' }} />
 
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 clamp(16px,5vw,40px)', position: 'relative', zIndex: 1 }}>
 
         {/* Header */}
         <FadeIn>
           <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <div className="section-tag" style={{ margin: '0 auto 20px' }}>🌸 About Me</div>
-            <h1 className="serif" style={{ fontSize: 'clamp(2.6rem,5.5vw,4.2rem)', fontWeight: 900, color: 'var(--text)', letterSpacing: '-2px', marginBottom: 22, lineHeight: 1.05 }}>
+            <div className="section-tag" style={{ margin: '0 auto 20px' }}>// about me</div>
+            <h1 className="serif" style={{ fontSize: 'clamp(2rem,5vw,3.6rem)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-2px', marginBottom: 18, lineHeight: 1.05 }}>
               Crafting Digital{' '}
               <span className="shimmer-text">Experiences</span>
             </h1>
@@ -117,12 +116,12 @@ const About = () => {
         </FadeIn>
 
         {/* Skills + Info */}
-        <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,340px),1fr))', gap: 28, marginBottom: 48 }}>
+        <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,320px),1fr))', gap: 24, marginBottom: 48 }}>
 
           <FadeIn delay={0.15} x={-20} y={0}>
             <div className="card" style={{ padding: 32 }}>
-              <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)', marginBottom: 28, display: 'flex', alignItems: 'center', gap: 10 }}>
-                <span style={{ background: 'var(--grad1)', borderRadius: 10, padding: '6px 10px', fontSize: '1rem' }}>⚡</span>
+              <h2 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text)', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 10, fontFamily: "'Space Grotesk', sans-serif" }}>
+                <span style={{ background: 'var(--grad1)', borderRadius: 6, padding: '4px 8px', fontSize: '0.8rem', color: '#fff' }}>⚡</span>
                 Technical Skills
               </h2>
               {skills.map((skill, i) => <SkillBar key={i} skill={skill} index={i} />)}
@@ -132,7 +131,7 @@ const About = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             <FadeIn delay={0.2} x={20} y={0}>
               <div className="card" style={{ padding: 32 }}>
-                <h2 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text)', marginBottom: 20 }}>🎓 Quick Info</h2>
+                <h2 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text)', marginBottom: 18, fontFamily: "'Space Grotesk', sans-serif" }}>Quick Info</h2>
                 {infoRows.map((row, i) => (
                   <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '11px 0', borderBottom: '1px solid var(--border)' }}>
                     <span style={{ color: 'var(--text3)', fontSize: '0.9rem', fontWeight: 500 }}>{row.label}</span>
@@ -156,8 +155,8 @@ const About = () => {
         {/* What I Do */}
         <FadeIn delay={0.15}>
           <div style={{ marginBottom: 56 }}>
-            <h2 className="serif" style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--text)', marginBottom: 28, textAlign: 'center' }}>✨ What I Do</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: 20 }}>
+            <h2 className="serif" style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--text)', marginBottom: 24, textAlign: 'center' }}>What I Do</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,200px),1fr))', gap: 16 }}>
               {[
                 { icon: '🛠️', title: 'Technical Delivery Manager', desc: 'Overseeing project delivery, timelines, and cross-functional team coordination.' },
                 { icon: '📊', title: 'Digital Marketing', desc: 'Driving growth through SEO, social media strategy, and data-driven campaigns.' },
@@ -182,7 +181,7 @@ const About = () => {
         {/* Interests */}
         <FadeIn delay={0.2}>
           <div style={{ textAlign: 'center' }}>
-            <h2 className="serif" style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--text)', marginBottom: 24 }}>💖 Interests & Passions</h2>
+            <h2 className="serif" style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--text)', marginBottom: 20 }}>Interests & Passions</h2>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'center' }}>
               {interests.map((item, i) => (
                 <motion.div key={i} whileHover={{ scale: 1.08, y: -5, boxShadow: 'var(--shadow2)' }} whileTap={{ scale: 0.95 }}

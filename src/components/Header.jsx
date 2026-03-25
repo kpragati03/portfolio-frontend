@@ -1,170 +1,183 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
-  { path: '/', label: 'Home' },
-  { path: '/about', label: 'About' },
-  { path: '/projects', label: 'Projects' },
-  { path: '/resume', label: 'Resume' },
-  { path: '/contact', label: 'Contact' },
+  { id: 'home',     label: 'Home' },
+  { id: 'about',    label: 'About' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'resume',   label: 'Resume' },
+  { id: 'contact',  label: 'Contact' },
 ];
+
+const scrollTo = (id) => {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+};
 
 const Header = ({ toggleTheme, currentTheme }) => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
+  const [activeId, setActiveId] = useState('home');
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener('scroll', onScroll);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 30);
+      const offsets = navLinks.map(({ id }) => {
+        const el = document.getElementById(id);
+        return { id, top: el ? el.getBoundingClientRect().top : Infinity };
+      });
+      const current = offsets.filter(o => o.top <= 100).at(-1);
+      if (current) setActiveId(current.id);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => setMenuOpen(false), [location]);
-
   const isDark = currentTheme === 'dark';
+
+  const handleNav = (id) => {
+    scrollTo(id);
+    setMenuOpen(false);
+  };
+
+  const bgScrolled = isDark ? 'rgba(8,11,20,0.94)' : 'rgba(240,244,255,0.94)';
 
   return (
     <>
       <style>{`
         .hdr {
           position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-          padding: 0 40px; height: 68px;
+          padding: 0 clamp(20px,5vw,48px); height: 64px;
           display: flex; align-items: center; justify-content: space-between;
-          transition: all 0.4s ease;
-          background: ${scrolled ? (isDark ? 'rgba(15,5,16,0.9)' : 'rgba(255,245,247,0.9)') : 'transparent'};
+          transition: all 0.3s ease;
+          background: ${scrolled ? bgScrolled : 'transparent'};
           backdrop-filter: ${scrolled ? 'blur(20px)' : 'none'};
           border-bottom: ${scrolled ? '1px solid var(--border)' : '1px solid transparent'};
         }
         .hdr-logo {
-          font-family: 'Playfair Display', serif;
-          font-size: 1.6rem; font-weight: 700; font-style: italic;
-          background: var(--grad1);
-          -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-          background-clip: text; text-decoration: none;
-          display: flex; align-items: center; gap: 6px;
-          position: relative;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 1.05rem; font-weight: 600;
+          color: var(--accent);
+          display: flex; align-items: center; gap: 1px;
+          position: relative; cursor: pointer; letter-spacing: -0.5px;
+          text-decoration: none;
         }
-        .hdr-logo:hover::after {
-          content: 'psst... try clicking me 5 times 🌸';
-          position: absolute;
-          top: calc(100% + 10px);
-          left: 0;
-          background: var(--surface);
-          border: 1.5px solid var(--border2);
-          border-radius: 12px;
-          padding: 7px 14px;
-          font-size: 0.75rem;
-          font-family: 'DM Sans', sans-serif;
-          font-style: normal;
-          font-weight: 600;
-          color: var(--pink);
-          white-space: nowrap;
-          backdrop-filter: blur(12px);
-          box-shadow: var(--shadow);
-          -webkit-text-fill-color: var(--pink);
-          z-index: 9999;
-          animation: fadeInTip 0.2s ease;
+        .hdr-logo-dim { color: var(--text3); font-weight: 400; }
+        .hdr-logo:hover .hdr-logo-tip { display: block; }
+        .hdr-logo-tip {
+          display: none;
+          position: absolute; top: calc(100% + 10px); left: 0;
+          background: var(--bg2); border: 1px solid var(--border2);
+          border-radius: 6px; padding: 5px 12px; font-size: 0.68rem;
+          font-family: 'JetBrains Mono', monospace; font-weight: 400;
+          color: var(--text2); white-space: nowrap;
+          z-index: 9999; animation: fadeInTip 0.2s ease;
         }
         @keyframes fadeInTip {
           from { opacity: 0; transform: translateY(-4px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        .hdr-nav { display: flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0; }
+        .hdr-nav { display: flex; align-items: center; gap: 2px; list-style: none; margin: 0; padding: 0; }
         .hdr-link {
-          position: relative; color: var(--text2); text-decoration: none;
-          font-size: 0.95rem; font-weight: 600; padding: 8px 18px;
-          border-radius: 50px; transition: all 0.25s;
+          position: relative; color: var(--text2);
+          font-size: 0.875rem; font-weight: 500; padding: 7px 14px;
+          border-radius: 6px; transition: all 0.2s; cursor: pointer;
+          background: none; border: none; font-family: 'Inter', sans-serif;
         }
-        .hdr-link:hover { color: var(--pink); background: var(--surface); }
-        .hdr-link.active { color: var(--pink); }
+        .hdr-link:hover { color: var(--text); background: var(--surface); }
+        .hdr-link.active { color: var(--accent); }
         .hdr-pill {
-          position: absolute; inset: 0; border-radius: 50px;
-          background: var(--surface); border: 1px solid var(--border2); z-index: -1;
+          position: absolute; inset: 0; border-radius: 6px;
+          background: rgba(0,212,255,0.06); border: 1px solid var(--border2); z-index: -1;
         }
         .hdr-toggle {
-          width: 42px; height: 42px; border-radius: 50%;
-          background: var(--surface); border: 1.5px solid var(--border2);
+          width: 36px; height: 36px; border-radius: 6px;
+          background: var(--surface); border: 1px solid var(--border);
           display: flex; align-items: center; justify-content: center;
-          cursor: pointer; font-size: 1.1rem; transition: all 0.3s;
-          margin-left: 10px; color: var(--text);
+          cursor: pointer; font-size: 0.9rem; transition: all 0.2s;
+          margin-left: 8px; color: var(--text2); font-family: monospace;
         }
-        .hdr-toggle:hover { background: var(--border2); transform: rotate(15deg) scale(1.1); }
+        .hdr-toggle:hover { border-color: var(--border2); color: var(--accent); }
         .hdr-burger {
-          display: none; background: var(--surface); border: 1.5px solid var(--border2);
-          border-radius: 12px; padding: 8px 12px; color: var(--pink);
-          cursor: pointer; font-size: 1.1rem;
+          display: none; background: var(--surface); border: 1px solid var(--border);
+          border-radius: 6px; padding: 7px 11px; color: var(--accent);
+          cursor: pointer; font-size: 1rem;
         }
         .hdr-overlay {
-          position: fixed; inset: 0; background: rgba(0,0,0,0.4);
-          backdrop-filter: blur(6px); z-index: 998;
+          position: fixed; inset: 0; background: rgba(0,0,0,0.65);
+          backdrop-filter: blur(4px); z-index: 998;
         }
         .hdr-drawer {
-          position: fixed; top: 0; right: 0; bottom: 0; width: 280px;
-          background: var(--bg); border-left: 1px solid var(--border);
-          z-index: 999; padding: 80px 32px 40px;
-          display: flex; flex-direction: column; gap: 8px;
+          position: fixed; top: 0; right: 0; bottom: 0; width: 260px;
+          background: var(--bg2); border-left: 1px solid var(--border);
+          z-index: 999; padding: 72px 28px 40px;
+          display: flex; flex-direction: column; gap: 2px;
         }
         .hdr-drawer-link {
-          color: var(--text2); text-decoration: none; font-size: 1.5rem;
-          font-weight: 700; padding: 16px 0; border-bottom: 1px solid var(--border);
-          transition: color 0.2s; font-family: 'Playfair Display', serif;
+          color: var(--text2); font-size: 1rem;
+          font-weight: 500; padding: 13px 0; border-bottom: 1px solid var(--border);
+          transition: color 0.2s; font-family: 'Inter', sans-serif;
+          cursor: pointer; background: none; border-top: none; border-left: none; border-right: none;
+          text-align: left;
         }
-        .hdr-drawer-link:hover, .hdr-drawer-link.active { color: var(--pink); }
+        .hdr-drawer-link:hover, .hdr-drawer-link.active { color: var(--accent); }
         .hdr-close {
-          position: absolute; top: 20px; right: 20px;
-          background: var(--surface); border: 1px solid var(--border2);
-          border-radius: 50%; width: 36px; height: 36px;
-          color: var(--text2); cursor: pointer; font-size: 1rem;
+          position: absolute; top: 18px; right: 18px;
+          background: var(--surface); border: 1px solid var(--border);
+          border-radius: 6px; width: 32px; height: 32px;
+          color: var(--text2); cursor: pointer; font-size: 0.85rem;
           display: flex; align-items: center; justify-content: center;
         }
-        body { padding-top: 68px; }
+        body { padding-top: 64px; }
         @media(max-width: 768px) {
           .hdr-nav { display: none; }
           .hdr-burger { display: block; }
-          .hdr { padding: 0 20px; }
         }
       `}</style>
 
       <header className="hdr">
-        <Link to="/" className="hdr-logo">✿ Pragati</Link>
+        <span className="hdr-logo" onClick={() => handleNav('home')}>
+          pragati<span className="hdr-logo-dim">.dev</span>
+          <span className="hdr-logo-tip">click 5x for a surprise</span>
+        </span>
 
         <ul className="hdr-nav">
-          {navLinks.map(({ path, label }) => (
-            <li key={path}>
-              <Link to={path} className={`hdr-link ${location.pathname === path ? 'active' : ''}`}>
-                {location.pathname === path && (
+          {navLinks.map(({ id, label }) => (
+            <li key={id}>
+              <button className={`hdr-link ${activeId === id ? 'active' : ''}`} onClick={() => handleNav(id)}>
+                {activeId === id && (
                   <motion.span layoutId="nav-pill" className="hdr-pill"
                     transition={{ type: 'spring', stiffness: 380, damping: 32 }} />
                 )}
                 {label}
-              </Link>
+              </button>
             </li>
           ))}
           <li>
-            <button className="hdr-toggle" onClick={toggleTheme}>
-              {isDark ? '☀️' : '🌙'}
+            <button className="hdr-toggle" onClick={toggleTheme} title="Toggle theme">
+              {isDark ? '○' : '●'}
             </button>
           </li>
         </ul>
 
-        <button className="hdr-burger" onClick={() => setMenuOpen(true)}>☰</button>
+        <button className="hdr-burger" onClick={() => setMenuOpen(true)}>≡</button>
       </header>
 
       <AnimatePresence>
         {menuOpen && (
           <>
             <motion.div className="hdr-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setMenuOpen(false)} />
-            <motion.div className="hdr-drawer" initial={{ x: 280 }} animate={{ x: 0 }} exit={{ x: 280 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}>
+            <motion.div className="hdr-drawer" initial={{ x: 260 }} animate={{ x: 0 }} exit={{ x: 260 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}>
               <button className="hdr-close" onClick={() => setMenuOpen(false)}>✕</button>
-              {navLinks.map(({ path, label }, i) => (
-                <motion.div key={path} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.06 }}>
-                  <Link to={path} className={`hdr-drawer-link ${location.pathname === path ? 'active' : ''}`}>{label}</Link>
-                </motion.div>
+              {navLinks.map(({ id, label }, i) => (
+                <motion.button key={id} className={`hdr-drawer-link ${activeId === id ? 'active' : ''}`}
+                  initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}
+                  onClick={() => handleNav(id)}>
+                  {label}
+                </motion.button>
               ))}
               <button className="hdr-toggle" onClick={toggleTheme} style={{ marginTop: 20, alignSelf: 'flex-start' }}>
-                {isDark ? '☀️' : '🌙'}
+                {isDark ? '○' : '●'}
               </button>
             </motion.div>
           </>
